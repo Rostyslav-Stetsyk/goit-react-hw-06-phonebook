@@ -1,53 +1,10 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
+import { configureStore } from '@reduxjs/toolkit';
+import { contactsReducer } from './contactSlice';
+import { filterReducer } from './filterSlice';
 
-const initState = {
-  account: {
-    balance: 0,
+export const store = configureStore({
+  reducer: {
+    contacts: contactsReducer,
+    filter: filterReducer,
   },
-};
-
-export const deposit = value => {
-  return {
-    type: 'account/deposit',
-    payload: {
-      value,
-    },
-  };
-};
-
-export const withdraw = value => {
-  return {
-    type: 'account/withdraw',
-    payload: {
-      value,
-    },
-  };
-};
-
-const rootReducer = (state = initState, action) => {
-  switch (action.type) {
-    case 'account/deposit':
-      return {
-        ...state,
-        account: {
-          ...state.account,
-          balance: state.account.balance + action.payload.value,
-        },
-      };
-    case 'account/withdraw':
-      return {
-        ...state,
-        account: {
-          ...state.account,
-          balance: state.account.balance - action.payload.value,
-        },
-      };
-    default:
-      return state;
-  }
-};
-
-const enhancer = devToolsEnhancer();
-
-export const store = createStore(rootReducer, enhancer);
+});
