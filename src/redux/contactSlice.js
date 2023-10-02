@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 
 const contactSlice = createSlice({
   name: 'contact',
-  initialState: {},
+  initialState: { list: [] },
   reducers: {
     addContact: {
       reducer(state, action) {
