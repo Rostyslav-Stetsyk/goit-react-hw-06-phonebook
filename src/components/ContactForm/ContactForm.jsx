@@ -49,7 +49,6 @@ export const ContactForm = () => {
         }}
         validationSchema={contactSchema}
         onSubmit={values => onSubmit(values)}
-        onSubmit={values => onSubmit(values)}
       >
         <FormStyled>
           <FieldWrapper>
